@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'web/style.css' %}"/>
+</head>
+<body>
+<div class="content">
+    <div class="form_register">
+        <form action="" method="post" class="form_id">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>
+                        <label>Tên đăng nhập :</label>
+                    </th>
+                    <td>
+                        {{ form.phone }}
+                    <td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Mật khẩu:</label>
+                    </th>
+                    <td>
+                        {{ form.password }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label >Email:</label>
+                    </th>
+                    <td>
+                        {{ form.email }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label >Họ Tên:</label>
+                    </th>
+                    <td>
+                        {{ form.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label >Ngày sinh:</label>
+                    </th>
+                    <td>
+                        {{ form.birthday }}
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Đăng ký">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
