@@ -2,7 +2,7 @@ from django import forms
 
 
 class RegisterForm(forms.Form):
-    phone = forms.CharField(label='User', max_length=100)
+    phone = forms.CharField(label='Phone', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
     email = forms.EmailField(label='Email')
     name = forms.CharField(label='Name')
@@ -10,5 +10,5 @@ class RegisterForm(forms.Form):
 
 
 class Login(forms.Form):
-    user = forms.CharField(label='User', max_length=100)
+    phone = forms.CharField(label='Phone', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
