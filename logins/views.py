@@ -20,20 +20,22 @@ def index(request):
 
 def login(request):
     if request.method == 'POST':
-        response = HttpResponse()
         phone=request.POST.get('phone')
         password=request.POST.get('pass')
-        try:
-            user = User.objects.get(phone=phone)
-        except User.DoesNotExist:
-            user = None
-        if user is None :
-            return render(request, 'web/login.html', {'message': "Tài khoản không tồn tai"})
+        if phone =='' or password =='':
+            return render(request, 'web/login.html', {'message': "Bạn phải nhập đầy đủ thông tin"})
         else:
-            if user.password==password:
-                return HttpResponseRedirect('/index')
+            try:
+                user = User.objects.get(phone=phone)
+            except User.DoesNotExist:
+                user = None
+            if user is None :
+                return render(request, 'web/login.html', {'message': "Tài khoản không tồn tai"})
             else:
-                return render(request, 'web/login.html', {'message': "Sai mật khẩu"})
+                if user.password==password:
+                    return HttpResponseRedirect('/index')
+                else:
+                    return render(request, 'web/login.html', {'message': "Sai mật khẩu"})
 
 
 
