@@ -13,11 +13,11 @@
     <div class="form">
         <form class="register-form" action="" method="post">
             {% csrf_token %}
-            <input type="text" placeholder="Số điện thoại"/>
-            <input type="password" placeholder="Mật khẩu"/>
-            <input type="text" placeholder="Email"/>
-            <input type="text" placeholder="Họ và tên"/>
-            <input type="text" placeholder="Ngày sinh"/>
+            <input type="text" placeholder="Số điện thoại" name="phone"/>
+            <input type="password" placeholder="Mật khẩu" name="pass"/>
+            <input type="text" placeholder="Email" name="email"/>
+            <input type="text" placeholder="Họ và tên" name="name"/>
+            <input type="text" placeholder="Ngày sinh" name="birthday"/>
             <button type="submit">Đăng Ký</button>
             <p class="message">Already registered? <a href="/login">Sign In</a></p>
         </form>

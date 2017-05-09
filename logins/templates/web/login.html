@@ -12,11 +12,13 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="login" method="post">
-            {% csrf_token %}
-            <input type="text" placeholder="Nhập số điện thoại"/>
-            <input type="password" placeholder="Mật khẩu" value=""/>
+
+        <form class="login-form" action="" method="post">
+              {% csrf_token %}
+            <input type="text" placeholder="Nhập số điện thoại" name="phone" />
+            <input type="password" placeholder="Mật khẩu" name="pass" />
             <button type="submit">Đăng nhập</button>
+            <p>{{message}}</p>
             <!--<button>login</button>-->
             <p class="message">Not registered? <a href="/register">Create an account</a></p>
         </form>
