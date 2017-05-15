@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>index</title>
+     {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div class="container">
+    <h2>Danh sách tài khoản</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tài khoản</th>
+            <th>Mật khẩu</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Email</th>
+            <th>Phân quyền</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if user %}
+            {% for acount in user %}
+            <tr>
+                <td>{{forloop.counter0}}</td>
+                <td>{{acount.phone}}</td>
+                <td>{{acount.password}}</td>
+                <td>{{acount.name}}</td>
+                <td>{{acount.birthday}}</td>
+                <td>{{acount.email}}</td>
+                <td><i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+           <p>Chưa có tài khoản nào.</p>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

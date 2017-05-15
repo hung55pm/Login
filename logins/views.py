@@ -15,8 +15,13 @@ from django.http import HttpResponse
 import MySQLdb
 # from .forms import Login,RegisterForm
 def index(request):
-
-    return render(request, 'web/index.html')
+    acount = User.objects.all()
+    template = loader.get_template('web/index.html')
+    context = {
+        'user': acount,
+    }
+    return HttpResponse(template.render(context, request))
+    # return render(request, 'web/index.html')
 
 def login(request):
     if request.method == 'POST':

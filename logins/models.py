@@ -11,3 +11,4 @@ class User(models.Model):
         name =models.TextField('Name',max_length=50)
         birthday=models.DateTimeField("Ngày sinh")
         email=models.TextField('Email',max_length=20)
+        role=models.IntegerField('Phân Quyền')
