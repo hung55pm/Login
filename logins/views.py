@@ -20,6 +20,7 @@ def index(request):
     context = {
         'user': acount,
     }
+
     return HttpResponse(template.render(context, request))
     # return render(request, 'web/index.html')
 
@@ -62,3 +63,10 @@ def register(request):
         return response
 
     return render(request, 'web/register.html')
+def permission(request,phone):
+    template = loader.get_template('web/permission.html')
+    context = {
+        'user': phone,
+    }
+
+    return HttpResponse(template.render(context, request))
