@@ -58,7 +58,7 @@ def register(request):
         email = request.POST.get('email')
         name = request.POST.get('name')
         birthday = request.POST.get('birthday')
-        account= User(phone=phone,password=password,access_token="",name=name,email=email,birthday=birthday)
+        account= User(phone=phone,password=password,access_token="",name=name,email=email,birthday=birthday, role=1)
         account.save()
         return response
 

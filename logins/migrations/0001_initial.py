@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=20, verbose_name='Password')),
                 ('access_token', models.TextField(max_length=50)),
                 ('name', models.TextField(max_length=50, verbose_name='Name')),
-                ('birthday', models.DateTimeField(verbose_name='Ng\xe0y sinh')),
+                ('birthday', models.DateTimeField(verbose_name='Ngày sinh')),
                 ('email', models.TextField(max_length=20, verbose_name='Email')),
                 ('role', models.IntegerField(verbose_name='Phân quyền')),
             ],
