@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import logging
 from django.shortcuts import render
 
 # Create your views here.
@@ -43,25 +44,21 @@ def login(request):
                 else:
                     return render(request, 'web/login.html', {'message': "Sai mật khẩu"})
 
-
-
-
     return render(request, 'web/login.html')
 
 def register(request):
     if request.method == 'POST':
-        response = HttpResponse()
-        response.write("<h1>Register success</h1></br>")
-        response.write("Your username: " + request.POST.get('phone') + "</br>")
         phone = request.POST.get('phone')
         password = request.POST.get('pass')
         email = request.POST.get('email')
         name = request.POST.get('name')
         birthday = request.POST.get('birthday')
-        account= User(phone=phone,password=password,access_token="",name=name,email=email,birthday=birthday, role=1)
-        account.save()
-        return response
-
+        if phone=='' or password=='' or birthday=='':
+            return render(request,'web/register.html',{'message': "bạn phải điền đầy đủ thông tin"})
+        else:
+            account= User(phone=phone,password=password,access_token="",name=name,email=email,birthday=birthday, role=1)
+            account.save()
+        return HttpResponseRedirect('/login')
     return render(request, 'web/register.html')
 def permission(request,phone):
     template = loader.get_template('web/permission.html')
