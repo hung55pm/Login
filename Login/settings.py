@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.utils.translation import gettext
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -108,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'vi-vn'
 
 TIME_ZONE = 'UTC'
 
@@ -117,8 +120,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+gettext = lambda s: s
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+LANGUAGES = (
+    ('vi', _('Vietnamese')),
+    ('en', _('English')),
+)

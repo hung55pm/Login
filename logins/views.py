@@ -5,7 +5,7 @@ import logging
 from django.shortcuts import render
 
 # Create your views here.
-
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
@@ -56,9 +56,11 @@ def register(request):
         if phone=='' or password=='' or birthday=='':
             return render(request,'web/register.html',{'message': "bạn phải điền đầy đủ thông tin"})
         else:
+
             account= User(phone=phone,password=password,access_token="",name=name,email=email,birthday=birthday, role=1)
             account.save()
-        return HttpResponseRedirect('/login')
+        return HttpResponseRedirect('/login',)
+
     return render(request, 'web/register.html')
 def permission(request,phone):
     template = loader.get_template('web/permission.html')
