@@ -40,14 +40,15 @@
         $(document).ready(function() {
            var notification = $("#notification").kendoNotification({
                         width: "12em",
+                        allowHideAfter: 1000,
                         templates: [{
                             type: "time",
                             template: "<div style='padding: .6em 1em'>Time is: <span class='timeWrap'>#: time #</span></div>"
                         }]
                     }).data("kendoNotification");
             if(result==200){
-
                 notification.show({ time: "thành công"  }, "time");
+                location.href="{% url 'index' %}"
 
             }else{
 
