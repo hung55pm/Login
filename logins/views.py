@@ -40,6 +40,7 @@ def login(request):
                 return render(request, 'web/login.html', {'message': "Tài khoản không tồn tai"})
             else:
                 if user.password==password:
+                    return render(request, 'web/login.html', {'data': 200})
                     return HttpResponseRedirect('/index')
                 else:
                     return render(request, 'web/login.html', {'message': "Sai mật khẩu"})

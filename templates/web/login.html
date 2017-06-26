@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load i18n %}
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/KendoUI/css/lib/kendo.common.min.css"/>
+    <link rel="stylesheet" href="/static/KendoUI/css/lib/kendo.default.min.css"/>
+    <link rel="stylesheet" href="/static/KendoUI/css/lib/kendo.default.mobile.min.css"/>
+    {% endblock %}
+    {% block scripts %}
+    <script src="/static/js/jquery.min.js"></script>
+    <!--<script src="/static/js/jquery-1.12.4.min.js"></script>-->
+    <script src="/static/KendoUI/js/lib/kendo.all.min.js"></script>
+
+    {% endblock %}
+
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+
+        <form class="login-form" action="" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder='{% trans "Number phone" %}' name="phone"/>
+            <input type="password" placeholder='{% trans "PassWord" %}' name="pass"/>
+            <button type="submit">{% trans "Login" %}</button>
+            <p>{{message}}</p>
+            <!--<button>login</button>-->
+            <p class="message">{% trans "Not registered?" %} <a href="/register">{% trans "Create an account" %}</a></p>
+
+        </form>
+    </div>
+    <span id="notification" style="display:none;"></span>
+    <script type="text/javascript">
+    var result={{data}}
+    console.log("aaaaaaa"+result)
+        $(document).ready(function() {
+           var notification = $("#notification").kendoNotification({
+                        width: "12em",
+                        templates: [{
+                            type: "time",
+                            template: "<div style='padding: .6em 1em'>Time is: <span class='timeWrap'>#: time #</span></div>"
+                        }]
+                    }).data("kendoNotification");
+            if(result==200){
+
+                notification.show({ time: "thành công"  }, "time");
+
+            }else{
+
+                notification.show({ time: "thất bại" }, "time");
+
+
+            }
+        });
+
+
+
+
+
+    </script>
+</div>
+</body>
+</html>

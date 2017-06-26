@@ -1,0 +1,29 @@
+{% load i18n %}
+<span id="notification" style="display:none;"></span>
+<script type="text/javascript">
+    var result={{data}}
+        $(document).ready(function() {
+            var notification = $("#notification").kendoNotification({
+                width: "12em",
+                show: onShow,
+                hide: onHide,
+                templates: [{
+                    type: "time",
+                    template: "<div style='padding: .6em 1em'><span class='timeWrap'>#: time #</span></div>"
+                }]
+            }).data("kendoNotification");
+            if(data==200){
+
+            $("#showNotification").click(function(){
+                var d = new Date();
+                notification.show({ time: kendo.toString(d, 'HH:MM:ss.') + kendo.toString(d.getMilliseconds(), "000") }, "time");
+            });
+            }else{
+            $("#showNotification").click(function(){
+                var d = new Date();
+                notification.show({ time: kendo.toString(d, 'HH:MM:ss.') + kendo.toString(d.getMilliseconds(), "000") }, "time");
+            });
+
+            }
+        });
+</script>
