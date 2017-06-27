@@ -26,8 +26,7 @@
             {% csrf_token %}
             <input type="text" placeholder='{% trans "Number phone" %}' name="phone"/>
             <input type="password" placeholder='{% trans "PassWord" %}' name="pass"/>
-            <button type="submit">{% trans "Login" %}</button>
-            <p>{{message}}</p>
+            <button type="submit" id="showPopupNotification">{% trans "Login" %}</button>
             <!--<button>login</button>-->
             <p class="message">{% trans "Not registered?" %} <a href="/register">{% trans "Create an account" %}</a></p>
 
@@ -35,33 +34,32 @@
     </div>
     <span id="notification" style="display:none;"></span>
     <script type="text/javascript">
-    var result={{data}}
-    console.log("aaaaaaa"+result)
         $(document).ready(function() {
-           var notification = $("#notification").kendoNotification({
+            var notification = $("#notification").kendoNotification({
                         width: "12em",
-                        allowHideAfter: 1000,
+                        animation:{
+                            open: {
+                                effects: "slideIn:left"
+                            },
+                            close: {
+                                effects: "slideIn:left",
+                                   reverse: true
+                                }
+                         },
+                         autoHideAfter: 3000,
                         templates: [{
                             type: "time",
-                            template: "<div style='padding: .6em 1em'>Time is: <span class='timeWrap'>#: time #</span></div>"
+                            template: "<div style='padding: .6em 1em'><span class='timeWrap'>#: time #</span></div>"
                         }]
                     }).data("kendoNotification");
-            if(result==200){
-                notification.show({ time: "thành công"  }, "time");
-                location.href="{% url 'index' %}"
-
-            }else{
-
-                notification.show({ time: "thất bại" }, "time");
-
-
-            }
+            //$("#showPopupNotification").click(function(){
+                   if("{{code}}"=="200"){
+                            location.href="{% url 'index' %}"
+                   }else if("{{code}}"=="300"){
+						notification.show({ time:  "{{mes}}" }, "time");
+				    }
+            //});
         });
-
-
-
-
-
     </script>
 </div>
 </body>

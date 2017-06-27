@@ -26,30 +26,6 @@
 
         </form>
     </div>
-    <span id="notification" style="display:none;"></span>
-    <script>
-                $(document).ready(function() {
-                    var notification = $("#notification").kendoNotification({
-                        width: "12em",
-                        show: onShow,
-                        hide: onHide,
-                        templates: [{
-                            type: "time",
-                            template: "<div style='padding: .6em 1em'>Time is: <span class='timeWrap'>#: time #</span></div>"
-                        }]
-                    }).data("kendoNotification");
-
-                    $("#showNotification").click(function(){
-                        var d = new Date();
-                        notification.show({ time: kendo.toString(d, 'HH:MM:ss.') + kendo.toString(d.getMilliseconds(), "000") }, "time");
-                    });
-
-                    $("#hideAllNotifications").click(function(){
-                        notification.hide();
-                    });
-                });
-
-    </script>
 </div>
 </body>
 </html>

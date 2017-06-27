@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import logging
-from django.shortcuts import render
+from django.core.serializers import serialize
 
 # Create your views here.
-from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
 
 # Create your views here.
-from .models import User
 from django.http import HttpResponse
-import MySQLdb
-# from .forms import Login,RegisterForm
+from logins.models import User
+
+
 def index(request):
     acount = User.objects.all()
     template = loader.get_template('web/index.html')
@@ -30,20 +28,19 @@ def login(request):
         phone=request.POST.get('phone')
         password=request.POST.get('pass')
         if phone =='' or password =='':
-            return render(request, 'web/login.html', {'message': "Bạn phải nhập đầy đủ thông tin"})
+            return render(request, 'web/login.html', {'code':300, 'mes': "Bạn phải nhập đầy đủ thông tin"})
         else:
             try:
                 user = User.objects.get(phone=phone)
             except User.DoesNotExist:
                 user = None
             if user is None :
-                return render(request, 'web/login.html', {'message': "Tài khoản không tồn tai"})
+                return render(request, 'web/login.html', {'code':300, 'mes': 'Tài khoản không tồn tại'})
             else:
                 if user.password==password:
-                    return render(request, 'web/login.html', {'data': 200})
-                    return HttpResponseRedirect('/index')
+                    return render(request, 'web/login.html', {'code':200, 'mes': "Thành công"})
                 else:
-                    return render(request, 'web/login.html', {'message': "Sai mật khẩu"})
+                    return render(request, 'web/login.html',  {'code':300, 'mes': "Sai mật khẩu"})
 
     return render(request, 'web/login.html')
 
@@ -70,3 +67,4 @@ def permission(request,phone):
     }
 
     return HttpResponse(template.render(context, request))
+
